@@ -1,0 +1,41 @@
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lambda Stack 3
+
+Parameters:
+  ApiGatewayRestApiId:
+    Type: String
+    Description: The ID of the shared API Gateway
+  DynamoDBTableArn:
+    Type: String
+    Description: The ARN of the shared DynamoDB table
+
+Resources:
+  LambdaFunction3:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/
+      Handler: LambdaStack3::LambdaStack3.Function::FunctionHandler
+      Runtime: dotnetcore3.1
+      MemorySize: 256
+      Timeout: 30
+      Policies:
+        - AWSLambdaFullAccess
+        - AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          DYNAMODB_TABLE_ARN: !Ref DynamoDBTableArn
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /lambda3
+            Method: get
+            RestApiId: !Ref ApiGatewayRestApiId
+
+Outputs:
+  LambdaFunction3Arn:
+    Description: The ARN of the Lambda function
+    Value: !GetAtt LambdaFunction3.Arn
+```

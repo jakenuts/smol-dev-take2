@@ -1,21 +1,15 @@
-1. AWS Resources: The AWS resources such as DynamoDB table and API Gateway are shared across all the stacks. These resources are defined in the base stack and used in the lambda stacks.
+Shared dependencies between the files:
 
-2. Stack Names: The names of the base stack and lambda stacks are shared across the deployment scripts and the stack templates.
+1. AWS Resources: The AWS resources such as the DynamoDB table and the API Gateway are shared across all the stacks. These resources are defined in the base-stack/template.yaml and are used in the lambda-stack/template.yaml files.
 
-3. Parameters: The parameters for the stacks are shared across the stack templates and the deployment scripts.
+2. Stack Parameters: The parameters for the stacks are defined in the base-stack/parameters.json and are used in the lambda-stack/parameters.json files. These parameters include the names and configurations of the AWS resources.
 
-4. AWS Credentials: The AWS credentials are shared across all the deployment scripts.
+3. Deployment Scripts: The PowerShell scripts for deploying the stacks are shared across all the stacks. These scripts are located in the base-stack/powershell-scripts and lambda-stack/powershell-scripts directories.
 
-5. ASP.NET Configuration: The ASP.NET configuration is shared across all the ASP.NET applications in the lambda stacks.
+4. ASP.NET Startup and Program Files: The Startup.cs and Program.cs files are shared across all the lambda stacks. These files contain the configuration and initialization code for the ASP.NET applications.
 
-6. Function Names: The function names in the ASP.NET applications are shared across the lambda stacks.
+5. Logical Resource Ids: The Logical Resource Ids such as "MyApiGateway" and "MyDynamoDBTable" are shared across the CloudFormation templates and the deployment scripts.
 
-7. Message Names: The message names used in the ASP.NET applications are shared across the lambda stacks.
+6. Error Messages: The error messages such as "The REST API doesn't contain any methods" are shared across the deployment scripts and the CloudFormation templates.
 
-8. DOM Element IDs: The IDs of the DOM elements used in the ASP.NET applications are shared across the lambda stacks.
-
-9. Data Schemas: The data schemas used in the DynamoDB table are shared across all the lambda stacks.
-
-10. API Gateway Paths: The paths under the base API Gateway are shared across all the lambda stacks.
-
-11. PowerShell Script Names: The names of the PowerShell scripts for deploying the stacks are shared across all the lambda stacks.
+7. Function Names: The function names in the PowerShell scripts and the ASP.NET files are shared across all the stacks. These function names include the names of the AWS SDK methods and the ASP.NET middleware methods.

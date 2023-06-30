@@ -1,0 +1,7 @@
+{
+  "Parameters": {
+    "StackName": "LambdaStack3",
+    "ApiGatewayName": "MyApiGateway",
+    "DynamoDBTableName": "MyDynamoDBTable"
+  }
+}

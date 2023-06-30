@@ -1,0 +1,36 @@
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lambda Stack 1
+
+Parameters:
+  ApiGatewayRestApiId:
+    Type: String
+    Description: The ID of the shared API Gateway Rest API
+  DynamoDBTableName:
+    Type: String
+    Description: The name of the shared DynamoDB table
+
+Resources:
+  LambdaFunction1:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/
+      Handler: lambda_function.lambda_handler
+      Runtime: dotnetcore3.1
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /lambda-stack-1
+            Method: get
+            RestApiId: !Ref ApiGatewayRestApiId
+      Environment:
+        Variables:
+          DYNAMODB_TABLE_NAME: !Ref DynamoDBTableName
+
+Outputs:
+  LambdaFunction1Arn:
+    Description: The ARN of the Lambda function
+    Value: !GetAtt LambdaFunction1.Arn
+```
