@@ -4,38 +4,38 @@ Transform: AWS::Serverless-2016-10-31
 Description: Lambda Stack 2
 
 Parameters:
-  ApiGatewayRestApiId:
+  MyApiGateway:
     Type: String
-    Description: The ID of the shared API Gateway
-  DynamoDBTableName:
+    Description: The ID of the shared API Gateway resource
+  MyDynamoDBTable:
     Type: String
-    Description: The name of the shared DynamoDB table
+    Description: The name of the shared DynamoDB table resource
 
 Resources:
-  LambdaFunction:
+  MyLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./src/
-      Handler: LambdaStack2::LambdaStack2.Functions::FunctionHandler
+      Handler: Program::LambdaEntryPoint
       Runtime: dotnetcore3.1
       MemorySize: 256
       Timeout: 30
       Policies:
         - AWSLambdaFullAccess
         - AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref MyDynamoDBTable
       Events:
-        ApiEvent:
+        GetResource:
           Type: Api
           Properties:
-            RestApiId: !Ref ApiGatewayRestApiId
-            Path: /lambda-stack-2
-            Method: post
+            Path: /resource2
+            Method: get
+            RestApiId: !Ref MyApiGateway
 
 Outputs:
   LambdaFunction:
-    Description: Lambda Function ARN
-    Value: !GetAtt LambdaFunction.Arn
-  LambdaFunctionIamRole:
-    Description: IAM Role created for Lambda function
-    Value: !GetAtt LambdaFunctionRole.Arn
+    Description: The ARN of the Lambda function
+    Value: !GetAtt MyLambdaFunction.Arn
 ```

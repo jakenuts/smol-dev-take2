@@ -1,32 +1,7 @@
 {
   "Parameters": {
-    "ApiGatewayName": {
-      "Type": "String",
-      "Description": "The name of the API Gateway resource"
-    },
-    "DynamoDBTableName": {
-      "Type": "String",
-      "Description": "The name of the DynamoDB table resource"
-    },
-    "LambdaFunctionName": {
-      "Type": "String",
-      "Description": "The name of the Lambda function"
-    },
-    "LambdaHandler": {
-      "Type": "String",
-      "Description": "The handler for the Lambda function"
-    },
-    "LambdaRuntime": {
-      "Type": "String",
-      "Description": "The runtime for the Lambda function"
-    },
-    "LambdaCodeS3Bucket": {
-      "Type": "String",
-      "Description": "The S3 bucket where the Lambda function code is stored"
-    },
-    "LambdaCodeS3Key": {
-      "Type": "String",
-      "Description": "The S3 key for the Lambda function code"
-    }
+    "StackName": "lambda-stack-2",
+    "DynamoDBTableName": "MyDynamoDBTable",
+    "ApiGatewayName": "MyApiGateway"
   }
 }

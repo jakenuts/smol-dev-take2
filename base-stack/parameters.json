@@ -1,12 +1,19 @@
 {
   "Parameters": {
-    "MyApiGatewayName": {
+    "StackName": {
+      "Description": "The name of the AWS CloudFormation stack.",
       "Type": "String",
-      "Description": "The name of the API Gateway"
+      "Default": "samplestack"
     },
-    "MyDynamoDBTableName": {
+    "ApiGatewayName": {
+      "Description": "The name of the API Gateway.",
       "Type": "String",
-      "Description": "The name of the DynamoDB table"
+      "Default": "MyApiGateway"
+    },
+    "DynamoDBTableName": {
+      "Description": "The name of the DynamoDB table.",
+      "Type": "String",
+      "Default": "MyDynamoDBTable"
     }
   }
 }

@@ -1,14 +1,18 @@
-```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: An AWS Serverless Specification template describing your function.
 
 Resources:
   MyApiGateway:
-    Type: AWS::ApiGateway::RestApi
+    Type: AWS::Serverless::Api
     Properties:
-      Name: MyApiGateway
-      Description: API Gateway for the application.
+      StageName: Prod
+      DefinitionBody:
+        swagger: '2.0'
+        info:
+          title:
+            Ref: AWS::StackName
+        paths: {}
 
   MyDynamoDBTable:
     Type: AWS::DynamoDB::Table
@@ -25,10 +29,12 @@ Resources:
         WriteCapacityUnits: 5
 
 Outputs:
-  ApiGatewayId:
-    Description: The ID of the API Gateway.
+  ApiGatewayRestApiId:
+    Description: The ID of the API Gateway REST API
     Value: !Ref MyApiGateway
+  ApiGatewayRestApiRootResourceId:
+    Description: The ID of the API Gateway REST API root resource
+    Value: !GetAtt MyApiGateway.RootResourceId
   DynamoDBTable:
-    Description: The name of the DynamoDB table.
+    Description: The name of the DynamoDB table
     Value: !Ref MyDynamoDBTable
-```

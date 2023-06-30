@@ -1,35 +1,7 @@
 {
   "Parameters": {
-    "MyApiGateway": {
-      "Type": "String",
-      "Description": "The ID of the API Gateway resource in the base stack"
-    },
-    "MyDynamoDBTable": {
-      "Type": "String",
-      "Description": "The name of the DynamoDB table resource in the base stack"
-    },
-    "LambdaFunctionName": {
-      "Type": "String",
-      "Description": "The name of the Lambda function for this stack"
-    },
-    "LambdaHandler": {
-      "Type": "String",
-      "Description": "The handler for the Lambda function"
-    },
-    "LambdaRuntime": {
-      "Type": "String",
-      "Description": "The runtime for the Lambda function",
-      "Default": "dotnetcore3.1"
-    },
-    "LambdaMemorySize": {
-      "Type": "Number",
-      "Description": "The memory size for the Lambda function",
-      "Default": 256
-    },
-    "LambdaTimeout": {
-      "Type": "Number",
-      "Description": "The timeout for the Lambda function",
-      "Default": 30
-    }
+    "StackName": "lambda-stack-1",
+    "DynamoDBTableName": "MyDynamoDBTable",
+    "ApiGatewayName": "MyApiGateway"
   }
 }
