@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lambda Stack 3
+
+Resources:
+  LambdaFunction3:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: lambda_stack3::lambda_stack3.aspnet_app::LambdaEntryPoint::FunctionHandlerAsync
+      Runtime: dotnetcore3.1
+      CodeUri: ./aspnet_app/
+      MemorySize: 256
+      Timeout: 30
+      Policies:
+        - AWSLambdaFullAccess
+        - AmazonDynamoDBFullAccess
+        - AmazonAPIGatewayAdministrator
+      Events:
+        RootResource:
+          Type: Api
+          Properties:
+            Path: /lambda_stack3
+            Method: any
+            RestApiId: 
+              Ref: BaseApiGateway
+
+Outputs:
+  LambdaFunction3:
+    Description: Lambda function info
+    Value: 
+      Ref: LambdaFunction3
+  LambdaFunction3Arn:
+    Description: Lambda function ARN
+    Value: 
+      Fn::GetAtt: 
+        - LambdaFunction3
+        - Arn
+  LambdaFunction3ApiGatewayInvokeURL:
+    Description: URL for Application Load Balancer
+    Value: 
+      Fn::Sub: https://${BaseApiGateway}.execute-api.${AWS::Region}.amazonaws.com/Prod/lambda_stack3/

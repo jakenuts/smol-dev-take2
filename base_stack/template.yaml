@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Base stack for AWS Serverless Application
+
+Resources:
+  MyDynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: MyTable
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: N
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+  MyApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: MyApiGateway
+      StageName: prod
+      DefinitionBody:
+        swagger: '2.0'
+        info:
+          title: MyApiGateway
+        paths: {}
+
+Outputs:
+  MyDynamoDBTable:
+    Description: The DynamoDB table
+    Value: !Ref MyDynamoDBTable
+    Export:
+      Name: MyDynamoDBTable
+
+  MyApiGateway:
+    Description: The API Gateway
+    Value: !Ref MyApiGateway
+    Export:
+      Name: MyApiGateway

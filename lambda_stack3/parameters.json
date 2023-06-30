@@ -1,0 +1,52 @@
+{
+  "Parameters": {
+    "BaseStackName": {
+      "Type": "String",
+      "Description": "The name of the base stack"
+    },
+    "LambdaFunctionName": {
+      "Type": "String",
+      "Description": "The name of the lambda function in the stack"
+    },
+    "ApiGatewayName": {
+      "Type": "String",
+      "Description": "The name of the API Gateway in the base stack"
+    },
+    "DynamoDBTableName": {
+      "Type": "String",
+      "Description": "The name of the DynamoDB table in the base stack"
+    },
+    "AWSRegion": {
+      "Type": "String",
+      "Description": "The AWS region where the stack will be deployed"
+    },
+    "AWSCredentials": {
+      "Type": "String",
+      "Description": "The AWS credentials for deploying the stack"
+    },
+    "AspNetConfiguration": {
+      "Type": "String",
+      "Description": "The ASP.NET configuration for the lambda function"
+    },
+    "MessageName": {
+      "Type": "String",
+      "Description": "The name of the message used in the lambda function"
+    },
+    "DomElementId": {
+      "Type": "String",
+      "Description": "The ID of the DOM element used in the lambda function"
+    },
+    "DataSchema": {
+      "Type": "String",
+      "Description": "The data schema for the DynamoDB table"
+    },
+    "ApiGatewayPath": {
+      "Type": "String",
+      "Description": "The path under the base API Gateway for the lambda function"
+    },
+    "PowerShellScriptName": {
+      "Type": "String",
+      "Description": "The name of the PowerShell script for deploying the stack"
+    }
+  }
+}
