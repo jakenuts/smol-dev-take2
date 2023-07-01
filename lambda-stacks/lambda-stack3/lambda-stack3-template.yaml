@@ -1,0 +1,30 @@
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lambda Stack 3
+
+Resources:
+  LambdaFunction3:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: lambda.handler
+      Runtime: dotnetcore3.1
+      CodeUri: ./src
+      Description: ASP.NET Core Lambda Stack 3
+      MemorySize: 256
+      Timeout: 30
+      Events:
+        RootResource:
+          Type: Api
+          Properties:
+            Path: /lambda-stack3
+            Method: ANY
+            RestApiId: 
+              Fn::ImportValue: 
+                !Sub "${MyApiGateway}-RestApiId"
+
+Outputs:
+  LambdaFunction3Api:
+    Description: API Gateway endpoint URL for Prod environment for Lambda Stack 3 function
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/lambda-stack3/"
+```

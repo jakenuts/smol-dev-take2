@@ -1,0 +1,37 @@
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  LambdaFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      Handler: lambda-stack2::lambda-stack2.Lambda::FunctionHandler
+      Runtime: dotnetcore3.1
+      CodeUri: ./src/lambda-stack2/bin/Release/netcoreapp3.1/publish/
+      Description: ASP.NET Core Lambda function processing API Gateway events.
+      MemorySize: 256
+      Timeout: 30
+      Role: null
+      Policies:
+        - AWSLambdaFullAccess
+      Events:
+        RootResource:
+          Type: Api 
+          Properties:
+            Path: /lambda-stack2
+            Method: any
+            RestApiId: 
+              Ref: MyApiGateway
+Outputs:
+  LambdaFunction:
+    Description: A reference to the Lambda function
+    Value: 
+      Ref: LambdaFunction
+  LambdaFunctionArn:
+    Description: The ARN of the Lambda function
+    Value: 
+      Fn::GetAtt: 
+        - LambdaFunction
+        - Arn
+```

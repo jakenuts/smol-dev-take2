@@ -1,7 +1,0 @@
-{
-  "Parameters": {
-    "StackName": "lambda-stack-2",
-    "DynamoDBTableName": "MyDynamoDBTable",
-    "ApiGatewayName": "MyApiGateway"
-  }
-}
