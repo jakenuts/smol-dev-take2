@@ -4,43 +4,42 @@ This project contains a nested AWS serverless set of stacks that have a DynamoDB
 
 ## Prerequisites
 
-- AWS CLI
-- AWS SAM CLI
+- AWS CLI installed and configured
+- AWS SAM CLI installed
 - PowerShell
-- AWS.Tools.Common PowerShell module
 
 ## Deployment Steps
 
-1. Open PowerShell and navigate to the project directory.
+1. Navigate to the `base-stack` directory.
 
-2. Import the AWS.Tools.Common module:
+2. Run the `deploy-base-stack.ps1` PowerShell script to deploy the base stack. This script will create the DynamoDB table and API Gateway.
 
-```powershell
-Import-Module AWS.Tools.Common
-```
+    ```powershell
+    .\deploy-base-stack.ps1
+    ```
 
-3. Convert the JSON parameters to a hashtable using the ConvertTo-HashTable script:
+    If the deployment fails, the script will output the error message.
 
-```powershell
-. .\scripts\ConvertTo-HashTable.ps1
-```
+3. Navigate to the `lambda-stack-1` directory.
 
-4. Deploy the base stack:
+4. Run the `deploy-lambda-stack-1.ps1` PowerShell script to deploy the first Lambda stack.
 
-```powershell
-$baseStackParameters = Get-Content -Path .\base-stack\base-stack-parameters.json | ConvertFrom-Json | ConvertTo-HashTable
-.\base-stack\deploy-base-stack.ps1 -stackName "samplestack" -templateFile .\base-stack\base-stack-template.yaml -parameters $baseStackParameters
-```
+    ```powershell
+    .\deploy-lambda-stack-1.ps1
+    ```
 
-5. Deploy the Lambda stacks:
+    If the deployment fails, the script will output the error message.
 
-```powershell
-$lambdaStackParameters = Get-Content -Path .\lambda-stacks\lambda-stack-parameters.json | ConvertFrom-Json | ConvertTo-HashTable
-.\lambda-stacks\deploy-lambda-stack.ps1 -stackName "samplestack" -templateFile .\lambda-stacks\lambda-stack-template.yaml -parameters $lambdaStackParameters
-```
+5. Navigate to the `lambda-stack-2` directory.
 
-If any errors occur during deployment, they will be displayed in the PowerShell console.
+6. Run the `deploy-lambda-stack-2.ps1` PowerShell script to deploy the second Lambda stack.
 
-## Troubleshooting
+    ```powershell
+    .\deploy-lambda-stack-2.ps1
+    ```
 
-If you encounter the error "The REST API doesn't contain any methods", ensure that your API Gateway resource in the base-stack-template.yaml file has at least one method defined.
+    If the deployment fails, the script will output the error message.
+
+## Note
+
+The PowerShell scripts use the `AWS.Tools.Common` module for AWS operations. If you encounter any issues related to this module, ensure that it is installed and up-to-date.

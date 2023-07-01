@@ -1,15 +1,15 @@
-1. "Import-Module AWS.Tools.Common": This is a shared dependency across all PowerShell scripts. It's the AWS SDK for PowerShell that provides cmdlets to manage AWS services.
+The shared dependencies between the files we are generating are:
 
-2. "MyApiGateway": This is a shared resource between the base-stack-template.yaml and lambda-stack-template.yaml. It's the logical ID of the AWS API Gateway resource.
+1. AWS Resources: These are shared across the YAML and JSON files. They include the AWS::ApiGateway::RestApi (MyApiGateway), AWS::DynamoDB::Table (MyDynamoDBTable), and AWS::CloudFormation::Stack (samplestack).
 
-3. "MyDynamoDBTable": This is a shared resource between the base-stack-template.yaml and lambda-stack-template.yaml. It's the logical ID of the AWS DynamoDB Table resource.
+2. PowerShell Modules: The PowerShell scripts share the AWS.Tools.Common module, which is imported for AWS operations.
 
-4. "samplestack": This is a shared resource between the base-stack-template.yaml and the deploy-base-stack.ps1 script. It's the name of the AWS CloudFormation stack.
+3. PowerShell Functions: The PowerShell scripts share the "sam deploy" command and the error handling function Write-Host "Failed to deploy stack $stackName : $($_.Exception.Message)".
 
-5. "ConvertTo-HashTable": This is a shared function used in the PowerShell deployment scripts. It's used to convert JSON parameters to a hashtable.
+4. JSON Parameters: The JSON files share the same structure for defining parameters for the AWS resources.
 
-6. "deploy-base-stack.ps1" and "deploy-lambda-stack.ps1": These are shared dependencies as they are the PowerShell scripts used to deploy the base stack and the lambda stacks respectively.
+5. YAML Templates: The YAML files share the same structure for defining AWS resources and their properties.
 
-7. "base-stack-parameters.json" and "lambda-stack-parameters.json": These are shared dependencies as they are the JSON files containing the parameters for the base stack and lambda stack templates respectively.
+6. Stack Names: The stack names (base-stack, lambda-stack-1, lambda-stack-2) are shared across the PowerShell scripts and the corresponding YAML and JSON files.
 
-8. "base-stack-template.yaml" and "lambda-stack-template.yaml": These are shared dependencies as they are the YAML files containing the AWS CloudFormation templates for the base stack and lambda stacks respectively.
+7. README.md: This file references all other files and their deployment steps, making it dependent on the names and structures of all other files.
