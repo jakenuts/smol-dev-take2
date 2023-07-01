@@ -1,0 +1,35 @@
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lambda Stack 1
+
+Resources:
+  LambdaFunction1:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: lambda.handler
+      Runtime: dotnetcore3.1
+      CodeUri: .
+      Description: ASP.NET Core Lambda function that is integrated with an API Gateway
+      MemorySize: 256
+      Timeout: 30
+      Role: null
+      Policies:
+        - AWSLambdaFullAccess
+      Events:
+        RootResource:
+          Type: Api
+          Properties:
+            Path: /lambda-stack-1
+            Method: ANY
+            RestApiId: !ImportValue MyApiGateway
+        ProxyResource:
+          Type: Api
+          Properties:
+            Path: /lambda-stack-1/{proxy+}
+            Method: ANY
+            RestApiId: !ImportValue MyApiGateway
+      Environment:
+        Variables:
+          TABLE_NAME: !ImportValue MyDynamoDBTable
+```

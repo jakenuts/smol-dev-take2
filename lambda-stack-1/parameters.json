@@ -1,0 +1,24 @@
+{
+  "Parameters": {
+    "MyApiGateway": {
+      "Type": "String",
+      "Description": "The ID of the shared API Gateway resource"
+    },
+    "MyDynamoDBTable": {
+      "Type": "String",
+      "Description": "The ID of the shared DynamoDB table resource"
+    },
+    "LambdaFunctionName": {
+      "Type": "String",
+      "Description": "The name of the Lambda function for this stack"
+    },
+    "LambdaFunctionHandler": {
+      "Type": "String",
+      "Description": "The handler for the Lambda function for this stack"
+    },
+    "LambdaFunctionRuntime": {
+      "Type": "String",
+      "Description": "The runtime for the Lambda function for this stack"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "Parameters": {
+    "MyApiGateway": {
+      "Type": "String",
+      "Description": "The logical ID of the API Gateway resource"
+    },
+    "MyDynamoDBTable": {
+      "Type": "String",
+      "Description": "The logical ID of the DynamoDB table resource"
+    }
+  }
+}

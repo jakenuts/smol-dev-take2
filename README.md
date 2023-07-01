@@ -1,17 +1,17 @@
 # AWS Serverless Application Deployment
 
-This application creates a nested AWS serverless set of stacks that have a DynamoDB table and API Gateway as shared resources and several ASP.NET Lambda stacks that nest paths under the base API Gateway.
+This repository contains a nested AWS serverless set of stacks that have a DynamoDB table and API Gateway as shared resources, and several ASP.NET Lambda stacks that nest paths under the base API Gateway.
 
 ## Prerequisites
 
 - AWS CLI
 - AWS SAM CLI
 - PowerShell
-- AWS.Tools.Common PowerShell module
+- .NET Core SDK
 
 ## Deployment Steps
 
-1. Open PowerShell and navigate to the directory containing the deployment scripts.
+1. Open PowerShell and navigate to the directory containing the stack you want to deploy.
 
 2. Import the AWS.Tools.Common module by running the following command:
 
@@ -19,28 +19,29 @@ This application creates a nested AWS serverless set of stacks that have a Dynam
 Import-Module AWS.Tools.Common
 ```
 
-3. Deploy the base stack by running the following command:
+3. Run the deployment script for the base stack:
 
 ```powershell
-.\base-stack\deploy-base-stack.ps1
+.\base-stack\deploy.ps1
 ```
 
-4. Deploy the Lambda stacks by running the following commands:
+4. If the base stack deployment is successful, you can proceed to deploy the lambda stacks. Run the deployment script for each lambda stack:
 
 ```powershell
-.\lambda-stacks\lambda-stack1\deploy-lambda-stack1.ps1
-.\lambda-stacks\lambda-stack2\deploy-lambda-stack2.ps1
-.\lambda-stacks\lambda-stack3\deploy-lambda-stack3.ps1
+.\lambda-stack-1\deploy.ps1
+.\lambda-stack-2\deploy.ps1
 ```
-
-If any errors occur during the deployment, they will be displayed in the PowerShell console.
 
 ## Troubleshooting
 
-If you encounter the error "The REST API doesn't contain any methods" during the deployment, it means that the API Gateway deployment failed because no methods were defined in the API. Make sure that your API Gateway resource in the base stack template (`base-stack/base-stack-template.yaml`) has at least one method defined.
+If you encounter an error during deployment, the error message will be displayed in the PowerShell console. The error message will provide details about the resource that failed to create and the reason for the failure.
 
-If the deployment of the DynamoDB table fails, it could be due to a number of reasons, such as insufficient permissions or exceeding the provisioned throughput capacity. Check the error message for more details and adjust your table configuration accordingly.
+For example, if the API Gateway deployment fails because the REST API doesn't contain any methods, you will see an error message similar to the following:
 
-## Cleanup
+```powershell
+Failed to deploy stack MyApiGateway : The REST API doesn't contain any methods (Service: ApiGateway, Status Code: 400, Request ID: 2137230d-8837-40fb-83bd-af36e0d1277f)
+```
 
-To delete the resources created by this application, you can delete the CloudFormation stacks in the AWS Management Console or by using the AWS CLI.
+In this case, you would need to add at least one method to the REST API in the `template.yaml` file for the base stack.
+
+If the DynamoDB table creation fails, the error message will provide details about why the creation was cancelled. You would need to fix the issue in the `template.yaml` file for the base stack before you can successfully deploy the stack.
