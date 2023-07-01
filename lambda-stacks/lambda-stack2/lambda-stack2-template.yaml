@@ -1,4 +1,4 @@
-```yaml
+
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: An AWS Serverless Specification template describing your function.
@@ -34,4 +34,3 @@ Outputs:
       Fn::GetAtt: 
         - LambdaFunction
         - Arn
-```

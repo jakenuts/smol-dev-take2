@@ -1,4 +1,4 @@
-```yaml
+
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Lambda Stack 3
@@ -27,4 +27,4 @@ Outputs:
   LambdaFunction3Api:
     Description: API Gateway endpoint URL for Prod environment for Lambda Stack 3 function
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/lambda-stack3/"
-```
+

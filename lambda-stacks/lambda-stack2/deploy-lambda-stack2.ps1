@@ -1,4 +1,4 @@
-```powershell
+
 # Import the AWS.Tools.Common module
 Import-Module AWS.Tools.Common
 
@@ -28,4 +28,3 @@ catch {
     # Display an error message
     Write-Host "Failed to deploy stack $stackName : $($_.Exception.Message)"
 }
-```
