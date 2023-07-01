@@ -1,0 +1,50 @@
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Application that uses the ASP.NET Core framework running in Amazon Lambda.
+
+Resources:
+  AspNetCoreFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: LambdaStack1::LambdaStack1.LambdaEntryPoint::FunctionHandlerAsync
+      Runtime: dotnetcore3.1
+      CodeUri: .
+      MemorySize: 256
+      Timeout: 30
+      Role: null
+      Policies: AWSLambdaFullAccess
+      Events:
+        RootResource:
+          Type: Api
+          Properties:
+            Path: /lambda-stack-1
+            Method: ANY
+            RestApiId: 
+              Ref: MyApiGateway
+        ProxyResource:
+          Type: Api
+          Properties:
+            Path: /lambda-stack-1/{proxy+}
+            Method: ANY
+            RestApiId: 
+              Ref: MyApiGateway
+
+Outputs:
+  ApiGatewayRestApiId:
+    Description: "API Gateway REST API ID"
+    Value: 
+      Ref: MyApiGateway
+  AspNetCoreFunction:
+    Description: "ASP.NET Core Lambda Function ARN"
+    Value: 
+      Fn::GetAtt:
+        - AspNetCoreFunction
+        - Arn
+  AspNetCoreFunctionIamRole:
+    Description: "Implicit IAM Role created for ASP.NET Core function"
+    Value: 
+      Fn::GetAtt:
+        - AspNetCoreFunctionRole
+        - Arn
+```

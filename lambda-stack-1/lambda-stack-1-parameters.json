@@ -1,0 +1,25 @@
+{
+  "Parameters": {
+    "MyApiGateway": {
+      "Type": "String",
+      "Description": "The ID of the API Gateway to be used by the Lambda function"
+    },
+    "MyDynamoDBTable": {
+      "Type": "String",
+      "Description": "The name of the DynamoDB table to be used by the Lambda function"
+    },
+    "LambdaFunctionName": {
+      "Type": "String",
+      "Description": "The name of the Lambda function"
+    },
+    "LambdaHandler": {
+      "Type": "String",
+      "Description": "The handler for the Lambda function"
+    },
+    "LambdaRuntime": {
+      "Type": "String",
+      "Description": "The runtime for the Lambda function",
+      "Default": "dotnetcore3.1"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "Parameters": {
+    "MyApiGatewayName": {
+      "Type": "String",
+      "Description": "The name of the API Gateway"
+    },
+    "MyDynamoDBTableName": {
+      "Type": "String",
+      "Description": "The name of the DynamoDB table"
+    }
+  }
+}
