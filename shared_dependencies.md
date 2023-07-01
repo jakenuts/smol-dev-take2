@@ -1,13 +1,15 @@
-1. "MyApiGateway": This is the logical ID of the API Gateway resource that is shared across the base stack and lambda stacks. It is used in the AWS CloudFormation templates (template.yaml) and the PowerShell deployment scripts (deploy.ps1).
+1. "Import-Module AWS.Tools.Common": This is a shared dependency across all PowerShell scripts. It's the AWS SDK for PowerShell that provides cmdlets to manage AWS services.
 
-2. "MyDynamoDBTable": This is the logical ID of the DynamoDB table resource that is shared across the base stack and lambda stacks. It is used in the AWS CloudFormation templates (template.yaml) and the PowerShell deployment scripts (deploy.ps1).
+2. "MyApiGateway": This is a shared resource between the base-stack-template.yaml and lambda-stack-template.yaml. It's the logical ID of the AWS API Gateway resource.
 
-3. "Import-Module AWS.Tools.Common": This is the PowerShell command to import the AWS.Tools.Common module. It is shared across all the PowerShell deployment scripts (deploy.ps1).
+3. "MyDynamoDBTable": This is a shared resource between the base-stack-template.yaml and lambda-stack-template.yaml. It's the logical ID of the AWS DynamoDB Table resource.
 
-4. "stackName": This is a variable used in the PowerShell deployment scripts (deploy.ps1) to hold the name of the stack being deployed. It is shared across all the deployment scripts.
+4. "samplestack": This is a shared resource between the base-stack-template.yaml and the deploy-base-stack.ps1 script. It's the name of the AWS CloudFormation stack.
 
-5. "parameters.json": These are the parameter files for each stack. They contain the parameters used in the AWS CloudFormation templates (template.yaml) and are shared across the corresponding PowerShell deployment scripts (deploy.ps1).
+5. "ConvertTo-HashTable": This is a shared function used in the PowerShell deployment scripts. It's used to convert JSON parameters to a hashtable.
 
-6. "template.yaml": These are the AWS CloudFormation templates for each stack. They define the resources for each stack and are shared across the corresponding PowerShell deployment scripts (deploy.ps1).
+6. "deploy-base-stack.ps1" and "deploy-lambda-stack.ps1": These are shared dependencies as they are the PowerShell scripts used to deploy the base stack and the lambda stacks respectively.
 
-7. "deploy.ps1": These are the PowerShell deployment scripts for each stack. They use the AWS CloudFormation templates (template.yaml) and parameter files (parameters.json) to deploy each stack.
+7. "base-stack-parameters.json" and "lambda-stack-parameters.json": These are shared dependencies as they are the JSON files containing the parameters for the base stack and lambda stack templates respectively.
+
+8. "base-stack-template.yaml" and "lambda-stack-template.yaml": These are shared dependencies as they are the YAML files containing the AWS CloudFormation templates for the base stack and lambda stacks respectively.

@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  LambdaFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      Handler: index.handler
+      Runtime: dotnetcore3.1
+      CodeUri: .
+      Description: ASP.NET Core Lambda function processing API Gateway events.
+      MemorySize: 256
+      Timeout: 30
+      Role: null
+      Policies: AWSLambdaBasicExecutionRole
+      Events:
+        RootResource:
+          Type: Api 
+          Properties:
+            Path: /
+            Method: any
+        ProxyResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+Outputs:
+  ApiURL:
+    Description: "API endpoint URL for Prod environment"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  LambdaFunction:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt LambdaFunction.Arn
+  LambdaFunctionIamRole:
+    Description: "Implicit IAM Role created for Lambda function"
+    Value: !GetAtt LambdaFunctionRole.Arn
